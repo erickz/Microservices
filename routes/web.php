@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', [
+  'as'			=> 'login',
+  'uses'		=> '\App\Http\Controllers\Auth\LoginController@login'
+]);
+
+require 'api.php';
