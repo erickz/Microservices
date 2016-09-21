@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return 'Página de retorno geral.';
+});
+
 Route::get('/login', [
   'as'			=> 'login',
   'uses'		=> '\App\Http\Controllers\Auth\LoginController@login'

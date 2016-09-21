@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
@@ -16,10 +16,10 @@ class CommentsController extends Controller
    */
   public function __construct()
   {
-      $this->middleware('guest', ['except' => 'logout']);
+      // $this->middleware('guest', ['except' => 'logout']);
   }
 
-    /**
+  /**
 	 * Fill the data
 	 * @return Comment
 	*/
@@ -42,7 +42,12 @@ class CommentsController extends Controller
 
 	public function get()
 	{
-		return Comment::all();
+		return response()->json(Comment::all());
+	}
+
+	public function getByPost($postId)
+	{
+		return Comment::where('post_id', $postId)->get();
 	}
 
 	public function store()
