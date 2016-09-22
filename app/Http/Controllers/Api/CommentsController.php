@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 
 use App\Models\Comment;
+use Input;
 
 class CommentsController extends Controller
 {
@@ -30,10 +31,8 @@ class CommentsController extends Controller
 		else
 			$comment = new Comment;
 
-		if (! $comment)
-			return 0;
-
 		$comment->post_id = Input::get('post_id');
+		$comment->user_id = Input::get('user_id');
 		$comment->text = Input::get('text');
 		$comment->save();
 

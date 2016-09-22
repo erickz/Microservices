@@ -29,7 +29,7 @@ Route::group(['middleware' => 'apiCustom'], function (){
     'uses'		=> '\App\Http\Controllers\Api\CommentsController@getByPost'
   ]);
 
-  Route::post('/create-comment', [
+  Route::get('/create-comment', [
     'as'			=> 'comments.post',
     'uses'		=> '\App\Http\Controllers\Api\CommentsController@store'
   ]);
