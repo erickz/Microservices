@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use App\Models\Comment;
-use Input;
 
 class CommentsController extends Controller
 {
@@ -24,16 +24,16 @@ class CommentsController extends Controller
 	 * Fill the data
 	 * @return Comment
 	*/
-	private function fill($id = NULL)
+	private function fill($id = NULL, Request $request)
 	{
 		if ($id)
 			$comment = Comment::find($id);
 		else
 			$comment = new Comment;
 
-		$comment->post_id = Input::get('post_id');
-		$comment->user_id = Input::get('user_id');
-		$comment->text = Input::get('text');
+		$comment->post_id = $request->input('post_id');
+		$comment->user_id = $request->input('user_id');
+		$comment->text = $request->input('text');
 		$comment->save();
 
 		return $comment;
@@ -49,9 +49,9 @@ class CommentsController extends Controller
 		return Comment::where('post_id', $postId)->get();
 	}
 
-	public function store()
+	public function store(Request $request)
 	{
-		$comment = $this->fill();
+		$comment = $this->fill(NULL, $request);
 
 		return 'Registro criado com sucesso!';
 	}
